@@ -1,0 +1,9 @@
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/backend/artisan queue:work --sleep=3 --tries=1 --daemon --timeout=2500
+autostart=true
+autorestart=true
+numprocs=8
+user=caddock
+redirect_stderr=true
+stdout_logfile=/var/log/laravel-worker.log
